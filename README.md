@@ -23,3 +23,38 @@ Inspired by the pokebiner, minecraft portals, and this project: https://pmndrs.g
 | `three` | Underlying 3D engine rendering the mesh for the portal frame, the sphere for the portals, and other misc 3D objects |
 | `@supabase/supabase-js` | Postgres database, authentication, and file storage |
 
+### Future To Do's
+ 
+- Everything :cries:
+
+## Project structure
+ 
+```
+src/
+├── app/
+│   └── page.tsx                       # Handles navbar routing for now                
+├── lib/
+│   └── supabase.ts                    # Database to hold the art, users and user types
+├── types/
+│   └── types.ts                       # Datatypes for supabase
+├── data/
+│   └── data.ts                        # Holds temp testing data (hardcoding tests)
+├── lib/                               # Will hold future utils
+│   └── 
+├── components/
+│   ├── Webpage/
+│   │   ├── Landing.tsx                # Asks if user is a guest or an artist
+│   │   └── Gallery.tsx                # If the user is a guest, brings them to the gallery that displays the art portals
+│   ├── Carousel/
+│   │   └── Carousel.tsx               # Puts each user's portal into a carousel
+│   ├── Portal/
+│   │   ├── Portal.tsx                 # Renders the portal frame and calls the sphere
+│   │   └── Sphere.tsx                 # Inverted sphere with art overlay (gives the fun perspective)
+│   ├── Artist/
+│   │   ├── Upload.tsx                 # Upload their art, description, socials, etc
+│   │   └── Manage.tsx                 # Manage their uploaded art
+│   └── admin/
+│       ├── AuthContext.tsx  
+│       ├── Signup.tsx            
+│       └── Login.tsx                  
+```
