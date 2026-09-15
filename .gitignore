@@ -23,5 +23,15 @@ dist-ssr
 *.sln
 *.sw?
 
-venv
-.env
+# frontend (Vite/Node)
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+frontend/*.local
+
+# backend (Python/FastAPI)
+backend/venv/
+backend/.env
+backend/__pycache__/
+backend/**/__pycache__/
+backend/*.pyc
