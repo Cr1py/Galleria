@@ -1,4 +1,4 @@
-# Aether View
+# Galleria
 
 Inspired by the pokebiner, minecraft portals, and this project: https://pmndrs.github.io/examples/enter-portals/. The goal is to create a webpage where the user can turn left or right and see different art portals as they move.
 
