@@ -7,7 +7,7 @@ Inspired by the pokebiner, minecraft portals, and this project: https://pmndrs.g
 1. Create a webpage that goes in a circle, with cards to hold the art. Goal is to start with a static number, but once I figure that out, then i can make it dynamic
 2. Create a backend to store the images, and to keep track of how many to display
 3. Once the front and back are connected, then I can make it look pretty (maybe play around with framer motion and gsap)
-4. Send it off to a few friends so they can test it (maybe sent to artisit friends so they can have their work displayed)
+4. Send it off to a few friends so they can test it and upload their art
 
 ## Tech stack & key dependencies
 
