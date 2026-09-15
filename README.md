@@ -13,15 +13,21 @@ Inspired by the pokebiner, minecraft portals, and this project: https://pmndrs.g
 
 | Package | Purpose |
 |---|---|
-| `next` | App framework (App Router) |
+| `Vite` | Frontend framework |
 | `react` | UI framework |
-| `typescript` | Static typing across components, data layer, and types |
-| `tailwindcss` | Styling, via `@theme inline` custom color tokens |
+| `typescript` | Frontend langauge |
+| `tailwindcss` | Styling |
 | `motion` (`motion/react`) | Moving the cards in a circle |
 | `@react-three/fiber` | React renderer for Three.js |
 | `@react-three/drei` | Texture loading (`useTexture`) and 3D helper utilities |
 | `three` | Underlying 3D engine rendering the mesh for the portal frame, the sphere for the portals, and other misc 3D objects |
-| `@supabase/supabase-js` | Postgres database, authentication, and file storage |
+| `FastAPI` | Backend framework, handles API routes for art, users, and auth |
+| `Python` | Backend language |
+| `SQL` | Querying language |
+| `SQLAlchemy` | ORM mapping Python models to Postgres tables |
+| `PostgreSQL` | Relational database storing art, users, and user types |
+| `Pydantic` | Request/response validation and typed schemas for the API |
+| `python-jose` + `passlib` | JWT auth and password hashing for artist/admin accounts |
 
 ### Future To Do's
  
@@ -30,31 +36,45 @@ Inspired by the pokebiner, minecraft portals, and this project: https://pmndrs.g
 ## Project structure
  
 ```
-src/
-├── app/
-│   └── page.tsx                       # Handles navbar routing for now                
-├── lib/
-│   └── supabase.ts                    # Database to hold the art, users and user types
-├── types/
-│   └── types.ts                       # Datatypes for supabase
-├── data/
-│   └── data.ts                        # Holds temp testing data (hardcoding tests)
-├── lib/                               # Will hold future utils
-│   └── 
-├── components/
-│   ├── Webpage/
-│   │   ├── Landing.tsx                # Asks if user is a guest or an artist
-│   │   └── Gallery.tsx                # If the user is a guest, brings them to the gallery that displays the art portals
-│   ├── Carousel/
-│   │   └── Carousel.tsx               # Puts each user's portal into a carousel
-│   ├── Portal/
-│   │   ├── Portal.tsx                 # Renders the portal frame and calls the sphere
-│   │   └── Sphere.tsx                 # Inverted sphere with art overlay (gives the fun perspective)
-│   ├── Artist/
-│   │   ├── Upload.tsx                 # Upload their art, description, socials, etc
-│   │   └── Manage.tsx                 # Manage their uploaded art
-│   └── admin/
-│       ├── AuthContext.tsx  
-│       ├── Signup.tsx            
-│       └── Login.tsx                  
+Galleria/
+├── frontend/
+│   └── src/
+│       ├── App.tsx                        # Handles navbar routing for now
+│       ├── lib/
+│       │   └── api.ts                     # Wrapper for calls to the FastAPI backend
+│       ├── types/
+│       │   └── types.ts                   # Datatypes shared with the backend API
+│       ├── data/
+│       │   └── data.ts                    # Holds temp testing data (hardcoding tests)
+│       └── components/
+│           ├── webpage/
+│           │   ├── Landing.tsx            # Asks if user is a guest or an artist
+│           │   └── Gallery.tsx            # If the user is a guest, brings them to the gallery that displays the art portals
+│           ├── carousel/
+│           │   └── Carousel.tsx           # Puts each user's portal into a carousel
+│           ├── portal/
+│           │   ├── Portal.tsx             # Renders the portal frame and calls the sphere
+│           │   └── Sphere.tsx             # Inverted sphere with art overlay (gives the fun perspective)
+│           ├── artist/
+│           │   ├── Upload.tsx             # Upload their art, description, socials, etc
+│           │   └── Manage.tsx             # Manage their uploaded art
+│           └── admin/
+│               ├── AuthContext.tsx        # Tracks logged-in user/session state
+│               ├── Signup.tsx             # Artist/admin account creation
+│               └── Login.tsx              # Artist/admin sign-in
+│
+└── backend/
+    └── app/
+        ├── main.py                        # App entrypoint, CORS, router registration
+        ├── config.py                      # Loads .env into a typed settings object
+        ├── database.py                    # SQLAlchemy engine + session setup
+        ├── models/
+        │   ├── art.py                     # ORM model for art pieces
+        │   └── user.py                    # ORM model for users/artists
+        ├── schemas/
+        │   ├── art.py                     # Pydantic request/response shapes for art
+        │   └── user.py                    # Pydantic request/response shapes for users
+        └── routers/
+            ├── art.py                     # /art endpoints
+            └── users.py                   # /users, /auth endpoints
 ```
