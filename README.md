@@ -40,8 +40,6 @@ src/
 │   └── types.ts                       # Datatypes for supabase
 ├── data/
 │   └── data.ts                        # Holds temp testing data (hardcoding tests)
-├── lib/                               # Will hold future utils
-│   └── 
 ├── components/
 │   ├── Webpage/
 │   │   ├── Landing.tsx                # Asks if user is a guest or an artist
