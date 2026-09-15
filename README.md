@@ -22,7 +22,7 @@ Inspired by the pokebiner, minecraft portals, and this project: https://pmndrs.g
 | `@react-three/drei` | Texture loading (`useTexture`) and 3D helper utilities |
 | `three` | Underlying 3D engine rendering the mesh for the portal frame, the sphere for the portals, and other misc 3D objects |
 | `@supabase/supabase-js` | Postgres database, authentication, and file storage |
-| `Spring Boot` | Backend |
+| `FastAPI` | Backend |
 
 ### Future To Do's
  
