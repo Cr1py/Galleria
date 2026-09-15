@@ -1,4 +1,4 @@
-# Aether View
+# Galleria
 
 Inspired by the pokebiner, minecraft portals, and this project: https://pmndrs.github.io/examples/enter-portals/. The goal is to create a webpage where the user can turn left or right and see different art portals as they move.
 
@@ -13,7 +13,7 @@ Inspired by the pokebiner, minecraft portals, and this project: https://pmndrs.g
 
 | Package | Purpose |
 |---|---|
-| `next` | App framework (App Router) |
+| `Vite` | App framework (App Router) |
 | `react` | UI framework |
 | `typescript` | Static typing across components, data layer, and types |
 | `tailwindcss` | Styling, via `@theme inline` custom color tokens |
@@ -22,6 +22,7 @@ Inspired by the pokebiner, minecraft portals, and this project: https://pmndrs.g
 | `@react-three/drei` | Texture loading (`useTexture`) and 3D helper utilities |
 | `three` | Underlying 3D engine rendering the mesh for the portal frame, the sphere for the portals, and other misc 3D objects |
 | `@supabase/supabase-js` | Postgres database, authentication, and file storage |
+| `Spring Boot` | Backend |
 
 ### Future To Do's
  
