@@ -1,11 +1,12 @@
-import Sphere from "./components/portal/Sphere"
+import Sphere from "./components/portal/Sphere";
+import Frame from "./components/portal/Frame"
 import { art } from "./data/data";
 
 function App() {
 
   return (
     <div className="h-full">
-      <Sphere art={art[0]} />
+      <Frame />
     </div>
   )
 }

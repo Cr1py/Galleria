@@ -53,7 +53,7 @@ Galleria/
 │           ├── carousel/
 │           │   └── Carousel.tsx           # Puts each user's portal into a carousel
 │           ├── portal/
-│           │   ├── Portal.tsx             # Renders the portal frame and calls the sphere
+│           │   ├── Frame.tsx             # Renders the portal frame and calls the sphere
 │           │   └── Sphere.tsx             # Inverted sphere with art overlay (gives the fun perspective)
 │           ├── artist/
 │           │   ├── Upload.tsx             # Upload their art, description, socials, etc
