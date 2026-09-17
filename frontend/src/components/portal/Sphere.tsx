@@ -21,15 +21,13 @@ function Mapping({ art }: SphereProps) {
 
 export default function Sphere({ art }: SphereProps) {
   return (
-    <div className="h-full w-full">
-      <Canvas camera={{ position: [0, 0, 10] }}>
-        <ambientLight intensity={0.5} />
-        <directionalLight position={[5, 5, 5]} intensity={1} />
+    <Canvas camera={{ position: [0, 0, 10] }}>
+      <ambientLight intensity={0.5} />
+      <directionalLight position={[5, 5, 5]} intensity={1} />
 
-        <Mapping art={art} />
+      <Mapping art={art} />
 
-        <OrbitControls />
-      </Canvas>
-    </div>
+      <OrbitControls />
+    </Canvas>
   );
 }
