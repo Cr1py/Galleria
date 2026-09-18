@@ -1,6 +1,4 @@
-import Sphere from "./components/portal/Sphere";
 import Frame from "./components/portal/Frame"
-import { art } from "./data/data";
 
 function App() {
 
