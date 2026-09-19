@@ -31,7 +31,13 @@ Inspired by the pokebiner, minecraft portals, and this project: https://pmndrs.g
 
 ### Future To Do's
  
-- Everything :cries:
+- create the gallery scene
+- set up the gallery carosel
+- set up Postgres
+- set up FastAPI
+- connect the above together
+- create the admin portal
+- A LOT OF TESTING ;cries;
 
 ## Project structure
  
@@ -78,3 +84,6 @@ Galleria/
             ├── art.py                     # /art endpoints
             └── users.py                   # /users, /auth endpoints
 ```
+
+### Credits
+- "Ornate Gold Vintage Frame" (https://skfb.ly/pK9qr) by journeyk
