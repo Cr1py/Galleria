@@ -16,7 +16,7 @@ type GLTFResult = GLTF & {
 }
 
 export default function FrameModel(props: ThreeElements['group']) {
-  const { nodes } = useGLTF('/models/ornate-gold-vintage-frame/source/frame.glb') as unknown as GLTFResult
+  const { nodes } = useGLTF('/models/ornate-gold-vintage-frame/source/frame-transformed.glb') as unknown as GLTFResult
   return (
     <group {...props} dispose={null}>
       <mesh geometry={nodes.mesh_0.geometry} material={nodes.mesh_0.material} />
@@ -24,4 +24,4 @@ export default function FrameModel(props: ThreeElements['group']) {
   )
 }
 
-useGLTF.preload('/models/ornate-gold-vintage-frame/source/frame.glb')
+useGLTF.preload('/models/ornate-gold-vintage-frame/source/frame-transformed.glb')
