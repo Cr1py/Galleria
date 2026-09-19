@@ -6,6 +6,7 @@ Command: npx gltfjsx@6.5.3 public/models/ornate-gold-vintage-frame/source/frame.
 import * as THREE from 'three'
 import { useGLTF } from '@react-three/drei'
 import type { GLTF } from 'three-stdlib'
+import type { ThreeElements } from '@react-three/fiber'
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -14,8 +15,8 @@ type GLTFResult = GLTF & {
   materials: {}
 }
 
-export default function FrameModel(props: JSX.IntrinsicElements['group']) {
-  const { nodes } = useGLTF('/models/ornate-gold-vintage-frame/source/frame.glb') as GLTFResult
+export default function FrameModel(props: ThreeElements['group']) {
+  const { nodes } = useGLTF('/models/ornate-gold-vintage-frame/source/frame.glb') as unknown as GLTFResult
   return (
     <group {...props} dispose={null}>
       <mesh geometry={nodes.mesh_0.geometry} material={nodes.mesh_0.material} />
