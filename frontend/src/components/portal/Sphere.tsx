@@ -11,7 +11,7 @@ export default function Sphere({ art }: SphereProps) {
 
   return (
     <mesh>
-      <sphereGeometry args={[3, 64, 64]} />
+      <sphereGeometry args={[20, 64, 64]} />
       <meshStandardMaterial map={map} side={THREE.BackSide} />
     </mesh>
   );

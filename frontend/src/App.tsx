@@ -1,12 +1,11 @@
-import Sphere from "./components/portal/Sphere";
-import Frame from "./components/portal/Frame"
-import { art } from "./data/data";
+import Gallery from "./components/webpage/Gallery"
 
 function App() {
 
   return (
+    // later: have it default to landing unless user chooses guest, then route them to Gallery
     <div className="h-full">
-      <Frame />
+      <Gallery />
     </div>
   )
 }
