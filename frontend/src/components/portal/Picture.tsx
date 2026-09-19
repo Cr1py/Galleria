@@ -8,8 +8,8 @@ import FrameModel from "./FrameModel";
 function Mapping() {
   return (
     <group>
-      <mesh>
-        <planeGeometry args={[4,2,8]} />
+      <mesh position={[0, 0, -0.4]}>
+        <planeGeometry args={[4.5,2.5]} />
         <MeshPortalMaterial resolution={1024} blur={0}>
           <ambientLight intensity={1} />
           <directionalLight position={[5, 5, 5]} intensity={1} />
