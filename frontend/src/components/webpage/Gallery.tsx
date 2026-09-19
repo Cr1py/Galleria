@@ -1,10 +1,10 @@
-import Frame from "../portal/Frame"
+import Picture from "../portal/Picture"
 
 function Gallery() {
 
   return (
     <div className="h-full bg-white">
-      <Frame />
+      <Picture />
     </div>
   )
 }
