@@ -2,6 +2,12 @@
 
 Inspired by the pokebiner, minecraft portals, and this project: https://pmndrs.github.io/examples/enter-portals/. The goal is to create a webpage where the user can turn left or right and see different art portals as they move.
 
+## What Does it Do?? (Currently)
+ 
+1. Load in by following the preview link
+2. Use your scroll wheel to get real close to the stock image painting
+3. Use your left mouse button to look around the painting and notice how the perspective changes
+
 ## Current To Do:
 
 - create the gallery scene
@@ -31,6 +37,8 @@ Inspired by the pokebiner, minecraft portals, and this project: https://pmndrs.g
 | `PostgreSQL` | Relational database storing art, users, and user types |
 | `Pydantic` | Request/response validation and typed schemas for the API |
 | `python-jose` + `passlib` | JWT auth and password hashing for artist/admin accounts |
+| `Cloudflare` | Frontend Hosting |
+| `TBD` | Backend Hosting |
 
 ## Project structure
  
