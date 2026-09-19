@@ -7,7 +7,7 @@ import Sphere from "./Sphere";
 function Mapping() {
   return (
     <mesh>
-      <planeGeometry args={[2,3,8]} />
+      <planeGeometry args={[4,6,8]} />
       <MeshPortalMaterial resolution={1024} blur={0}>
         <ambientLight intensity={1} />
         <directionalLight position={[5, 5, 5]} intensity={1} />
