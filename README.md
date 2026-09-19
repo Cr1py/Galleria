@@ -4,10 +4,13 @@ Inspired by the pokebiner, minecraft portals, and this project: https://pmndrs.g
 
 ## Current To Do:
 
-1. Create a webpage that goes in a circle, with cards to hold the art. Goal is to start with a static number, but once I figure that out, then i can make it dynamic
-2. Create a backend to store the images, and to keep track of how many to display
-3. Once the front and back are connected, then I can make it look pretty (maybe play around with framer motion and gsap)
-4. Send it off to a few friends so they can test it and upload their art
+- create the gallery scene
+- set up the gallery carosel
+- set up Postgres
+- set up FastAPI
+- connect the above together
+- create the admin portal
+- A LOT OF TESTING ;cries;
 
 ## Tech stack & key dependencies
 
@@ -28,10 +31,6 @@ Inspired by the pokebiner, minecraft portals, and this project: https://pmndrs.g
 | `PostgreSQL` | Relational database storing art, users, and user types |
 | `Pydantic` | Request/response validation and typed schemas for the API |
 | `python-jose` + `passlib` | JWT auth and password hashing for artist/admin accounts |
-
-### Future To Do's
- 
-- Everything :cries:
 
 ## Project structure
  
@@ -78,3 +77,6 @@ Galleria/
             ├── art.py                     # /art endpoints
             └── users.py                   # /users, /auth endpoints
 ```
+
+### Credits
+- "Ornate Gold Vintage Frame" (https://skfb.ly/pK9qr) by journeyk
