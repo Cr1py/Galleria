@@ -19,7 +19,7 @@ export default function FrameModel(props: ThreeElements['group']) {
   const { nodes } = useGLTF('/models/ornate-gold-vintage-frame/source/frame-transformed.glb') as unknown as GLTFResult
   return (
     <group {...props} dispose={null}>
-      <mesh geometry={nodes.mesh_0.geometry} material={nodes.mesh_0.material} />
+      <mesh geometry={nodes.mesh_0.geometry} material={nodes.mesh_0.material} castShadow />
     </group>
   )
 }
