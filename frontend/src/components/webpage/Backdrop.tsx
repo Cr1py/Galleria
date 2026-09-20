@@ -3,18 +3,85 @@ type BackdropProps = {
 };
 
 export default function Backdrop({ wallZ }: BackdropProps) {
+  const roomWidth = 30;
+  const roomDepth = Math.abs(wallZ) + 6;
+  const floorY = -2;
+  const ceilingY = 12; 
+
+  // wall height + vertical center
+  const wallHeight = ceilingY - floorY;
+  const wallY = (floorY + ceilingY) / 2;
+
+  const wallColor = "#001d3d";
+  const baseboardColor = "#3a2417";
+
   return (
     <group>
-      {/* wall */}
-      <mesh position={[0, 1, wallZ]}>
-        <planeGeometry args={[14, 12]} />
-        <meshStandardMaterial color="#0a1128" roughness={0.85} />
+      {/* wall positions: [x, y, z]
+        x = +x = right | -x = left
+        y = height
+        z = depth
+      */}
+      {/* back wall */}
+      <mesh position={[0, wallY, wallZ]}>
+        <planeGeometry args={[roomWidth, wallHeight]} />
+        <meshStandardMaterial color={wallColor} roughness={0.85} />
+      </mesh>
+
+      {/* side walls */}
+      <mesh
+        position={[-roomWidth / 2, wallY, wallZ / 2]}
+        rotation={[0, Math.PI / 2, 0]}
+      >
+        <planeGeometry args={[roomDepth, wallHeight]} />
+        <meshStandardMaterial color={wallColor} roughness={0.85} />
+      </mesh>
+      <mesh
+        position={[roomWidth / 2, wallY, wallZ / 2]}
+        rotation={[0, -Math.PI / 2, 0]}
+      >
+        <planeGeometry args={[roomDepth, wallHeight]} />
+        <meshStandardMaterial color={wallColor} roughness={0.85} />
       </mesh>
 
       {/* floor */}
-      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -2, wallZ / 2]}>
-        <planeGeometry args={[14, Math.abs(wallZ) + 6]} />
-        <meshStandardMaterial color="#1a1a1a" roughness={0.6} />
+      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, floorY, wallZ / 2]}>
+        <planeGeometry args={[roomWidth, roomDepth]} />
+        <meshStandardMaterial color={baseboardColor} roughness={0.6} />
+      </mesh>
+
+      {/* ceiling
+          rotation: [Math.PI / 2, 0, 0] -> rotates the opposite direction from
+          the floor's rotation, so this plane's front face points downward
+          (into the room) instead of upward
+      */}
+      <mesh rotation={[Math.PI / 2, 0, 0]} position={[0, ceilingY, wallZ / 2]}>
+        <planeGeometry args={[roomWidth, roomDepth]} />
+        <meshStandardMaterial color={wallColor} roughness={0.85} />
+      </mesh>
+
+      {/* baseboards */}
+      <mesh position={[0, floorY + 0.25, wallZ + 0.05]}>
+        <boxGeometry args={[roomWidth, 0.5, 0.1]} />
+        <meshStandardMaterial color={baseboardColor} roughness={0.5} />
+      </mesh>
+
+      {/* left wall baseboard */}
+      <mesh
+        position={[-roomWidth / 2 + 0.05, floorY + 0.25, wallZ / 2]}
+        rotation={[0, Math.PI / 2, 0]}
+      >
+        <boxGeometry args={[roomDepth, 0.5, 0.1]} />
+        <meshStandardMaterial color={baseboardColor} roughness={0.5} />
+      </mesh>
+
+      {/* right wall baseboard */}
+      <mesh
+        position={[roomWidth / 2 - 0.05, floorY + 0.25, wallZ / 2]}
+        rotation={[0, Math.PI / 2, 0]}
+      >
+        <boxGeometry args={[roomDepth, 0.5, 0.1]} />
+        <meshStandardMaterial color={baseboardColor} roughness={0.5} />
       </mesh>
     </group>
   );

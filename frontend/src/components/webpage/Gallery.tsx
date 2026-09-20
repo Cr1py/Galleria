@@ -24,7 +24,7 @@ function Gallery() {
         //            less distortion at the edges; higher (e.g. 75, a common
         //            default) = wider angle, more of the scene visible but
         //            with more perspective stretching near the frame's edges
-        camera={{ position: [0, 0.5, 6], fov: 50 }}
+        camera={{ position: [0, 0.5, 6], fov: 60 }}
         gl={{ alpha: true }}
         style={{ background: "transparent" }}
       >
@@ -33,20 +33,18 @@ function Gallery() {
 
         <Backdrop wallZ={frameZ} />
         {/*
-          Picture position: [x, y, z]
+          position: [x, y, z]
           x -> centered left/right on the wall; - left + right
           y -> vertical height off the ground; higher = higher level
           z -> depth; matches wallZ passed to Backdrop, so the picture
                sits flush against the wall rather than floating in
                front of it or clipping through it
         */}
-        <Picture position={[0, 2, -6.6]} />
+        <Picture position={[0, 5, -7]} />
 
         <OrbitControls
           // target: [x, y, z]: the point the camera orbits around and looks at.
-          // Matches Frame's position exactly, so rotating/zooming pivots around
-          // the frame itself rather than some other point in space.
-          target={[0, 1.5, -7]}
+          target={[0, 4.5, -7]}
 
           // enablePan={false}: disables the ability to drag the whole scene
           // sideways (normally right-click or shift+drag). Without this, the
@@ -64,7 +62,7 @@ function Gallery() {
           // minPolarAngle / maxPolarAngle: vertical rotation limit, measured
           // from straight up (0) to straight down (Math.PI). Math.PI / 2 is
           // level with the horizon.
-          minPolarAngle={Math.PI / 2.1}
+          minPolarAngle={Math.PI / 2.1} 
           maxPolarAngle={Math.PI / 1.5}
 
           // minAzimuthAngle / maxAzimuthAngle: horizontal rotation limit
