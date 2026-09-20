@@ -24,7 +24,7 @@ export default function Backdrop({ wallZ }: BackdropProps) {
         z = depth
       */}
       {/* back wall */}
-      <mesh position={[0, wallY, wallZ]}>
+      <mesh position={[0, wallY, wallZ]} receiveShadow>
         <planeGeometry args={[roomWidth, wallHeight]} />
         <meshStandardMaterial color={wallColor} roughness={0.85} />
       </mesh>
@@ -33,20 +33,27 @@ export default function Backdrop({ wallZ }: BackdropProps) {
       <mesh
         position={[-roomWidth / 2, wallY, wallZ / 2]}
         rotation={[0, Math.PI / 2, 0]}
+        receiveShadow
       >
         <planeGeometry args={[roomDepth, wallHeight]} />
         <meshStandardMaterial color={wallColor} roughness={0.85} />
       </mesh>
+
       <mesh
         position={[roomWidth / 2, wallY, wallZ / 2]}
         rotation={[0, -Math.PI / 2, 0]}
+        receiveShadow
       >
         <planeGeometry args={[roomDepth, wallHeight]} />
         <meshStandardMaterial color={wallColor} roughness={0.85} />
       </mesh>
 
       {/* floor */}
-      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, floorY, wallZ / 2]}>
+      <mesh 
+        rotation={[-Math.PI / 2, 0, 0]} 
+        position={[0, floorY, wallZ / 2]}
+        receiveShadow
+      >
         <planeGeometry args={[roomWidth, roomDepth]} />
         <meshStandardMaterial color={floorColor} roughness={0.6} />
       </mesh>
@@ -56,13 +63,17 @@ export default function Backdrop({ wallZ }: BackdropProps) {
           the floor's rotation, so this plane's front face points downward
           (into the room) instead of upward
       */}
-      <mesh rotation={[Math.PI / 2, 0, 0]} position={[0, ceilingY, wallZ / 2]}>
+      <mesh 
+        rotation={[Math.PI / 2, 0, 0]} 
+        position={[0, ceilingY, wallZ / 2]}
+        receiveShadow
+      >
         <planeGeometry args={[roomWidth, roomDepth]} />
         <meshStandardMaterial color={wallColor} roughness={0.85} />
       </mesh>
 
       {/* baseboards */}
-      <mesh position={[0, floorY + 0.25, wallZ + 0.05]}>
+      <mesh position={[0, floorY + 0.25, wallZ + 0.05]} receiveShadow>
         <boxGeometry args={[roomWidth, 0.5, 0.1]} />
         <meshStandardMaterial color={baseboardColor} roughness={0.5} />
       </mesh>
@@ -71,6 +82,7 @@ export default function Backdrop({ wallZ }: BackdropProps) {
       <mesh
         position={[-roomWidth / 2 + 0.05, floorY + 0.25, wallZ / 2]}
         rotation={[0, Math.PI / 2, 0]}
+        receiveShadow
       >
         <boxGeometry args={[roomDepth, 0.5, 0.1]} />
         <meshStandardMaterial color={baseboardColor} roughness={0.5} />
@@ -80,6 +92,7 @@ export default function Backdrop({ wallZ }: BackdropProps) {
       <mesh
         position={[roomWidth / 2 - 0.05, floorY + 0.25, wallZ / 2]}
         rotation={[0, Math.PI / 2, 0]}
+        receiveShadow
       >
         <boxGeometry args={[roomDepth, 0.5, 0.1]} />
         <meshStandardMaterial color={baseboardColor} roughness={0.5} />

@@ -19,10 +19,10 @@ function Spotlight() {
     <>
       <spotLight
         ref={lightRef}
-        position={[0, 8.5, -5]}
-        angle={0.9}
-        penumbra={0.7}
-        intensity={80}
+        position={[0, 8.5, -3]}
+        angle={0.7}
+        penumbra={0.8}
+        intensity={100}
         castShadow
       />
       <primitive object={new THREE.Object3D()} ref={targetRef} position={[0, 5, -7]} />
