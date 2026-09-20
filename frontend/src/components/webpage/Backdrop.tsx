@@ -12,8 +12,9 @@ export default function Backdrop({ wallZ }: BackdropProps) {
   const wallHeight = ceilingY - floorY;
   const wallY = (floorY + ceilingY) / 2;
 
-  const wallColor = "#001d3d";
-  const baseboardColor = "#3a2417";
+  const wallColor = "#242331";
+  const baseboardColor = "#242331";
+  const floorColor = "#533e2d";
 
   return (
     <group>
@@ -47,7 +48,7 @@ export default function Backdrop({ wallZ }: BackdropProps) {
       {/* floor */}
       <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, floorY, wallZ / 2]}>
         <planeGeometry args={[roomWidth, roomDepth]} />
-        <meshStandardMaterial color={baseboardColor} roughness={0.6} />
+        <meshStandardMaterial color={floorColor} roughness={0.6} />
       </mesh>
 
       {/* ceiling

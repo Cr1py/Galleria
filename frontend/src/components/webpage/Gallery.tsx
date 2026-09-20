@@ -1,7 +1,34 @@
+import { useRef, useEffect } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
+import * as THREE from "three";
 import Picture from "../Frame/Picture";
 import Backdrop from "./Backdrop";
+
+function Spotlight() {
+  const lightRef = useRef<THREE.SpotLight>(null!);
+  const targetRef = useRef<THREE.Object3D>(null!);
+
+  useEffect(() => {
+    if (lightRef.current && targetRef.current) {
+      lightRef.current.target = targetRef.current;
+    }
+  }, []);
+
+  return (
+    <>
+      <spotLight
+        ref={lightRef}
+        position={[0, 8.5, -5]}
+        angle={0.9}
+        penumbra={0.7}
+        intensity={80}
+        castShadow
+      />
+      <primitive object={new THREE.Object3D()} ref={targetRef} position={[0, 5, -7]} />
+    </>
+  );
+}
 
 function Gallery() {
   const frameZ = -7.45;
@@ -9,67 +36,54 @@ function Gallery() {
   return (
     <div className="relative h-full w-full">
       <Canvas
-        shadows
-        // Camera settings:
+        shadows={{ type: THREE.VSMShadowMap }}
+        // camera settings:
         // position: [x, y, z]
-        //   x     -> centered left/right, looking straight at the frame
-        //   y     -> eye-level height off the ground (roughly average
-        //            human eye height), not the frame's center height
-        //   z     -> how far back the camera starts, in front of the
-        //            frame along the depth axis (frame sits at negative z,
-        //            so a positive z here puts the camera on the near side)
+        //   x = centered left/right, looking straight at the frame
+        //   y = eye-level height off the ground
+        //   z = how far back the camera starts
         //
-        //   fov   -> field of view in degrees, i.e. how wide the camera's
-        //            "lens" sees. Lower = more zoomed-in/telephoto feel with
-        //            less distortion at the edges; higher (e.g. 75, a common
-        //            default) = wider angle, more of the scene visible but
-        //            with more perspective stretching near the frame's edges
+        // fov: field of view in degrees
+        //   lower = more zoomed-in
+        //   higher = wider angle
         camera={{ position: [0, 0.5, 6], fov: 60 }}
         gl={{ alpha: true }}
         style={{ background: "transparent" }}
       >
-        <ambientLight intensity={0.7} />
-        <directionalLight position={[5, 8, 5]} intensity={1} />
+        <ambientLight intensity={0.5} />
 
         <Backdrop wallZ={frameZ} />
         {/*
           position: [x, y, z]
-          x -> centered left/right on the wall; - left + right
-          y -> vertical height off the ground; higher = higher level
-          z -> depth; matches wallZ passed to Backdrop, so the picture
-               sits flush against the wall rather than floating in
-               front of it or clipping through it
+          x = centered left/right on the wall; - left + right
+          y = vertical height off the ground; higher = higher level
+          z = depth; matches wallZ passed to Backdrop, so the picture
+              sits flush against the wall rather than floating in
+              front of it or clipping through it
         */}
         <Picture position={[0, 5, -7]} />
+
+        <Spotlight />
 
         <OrbitControls
           // target: [x, y, z]: the point the camera orbits around and looks at.
           target={[0, 4.5, -7]}
 
           // enablePan={false}: disables the ability to drag the whole scene
-          // sideways (normally right-click or shift+drag). Without this, the
-          // frame's on-screen position could shift away from `target`, breaking
-          // the "frame stays fixed in place" behavior.
+          // sideways (normally right-click or shift+drag)
           enablePan={false}
 
-          // minDistance / maxDistance: how close/far the camera can get to
-          // `target` via scroll-zoom. minDistance stops the camera from zooming
-          // through the frame's geometry; maxDistance stops it from zooming out
-          // far enough to see past the edges of the wall/floor planes.
+          // minDistance / maxDistance: how close/far the camera can get to `target` via scroll-zoom 
+          // minDistance stops the camera from zooming
           minDistance={-1}
           maxDistance={8}
 
-          // minPolarAngle / maxPolarAngle: vertical rotation limit, measured
-          // from straight up (0) to straight down (Math.PI). Math.PI / 2 is
-          // level with the horizon.
+          // minPolarAngle / maxPolarAngle: vertical rotation limit, measured from straight up (0) to straight down (Math.PI)
+          // Math.PI / 2 is level with the horizon.
           minPolarAngle={Math.PI / 2.1} 
           maxPolarAngle={Math.PI / 1.5}
 
           // minAzimuthAngle / maxAzimuthAngle: horizontal rotation limit
-          // around the target, in radians left/right of the camera's starting
-          // direction. This range (-45° to +45°) stops the user from dragging
-          // far enough sideways to see the wall/floor planes' edges or the back
-          // of the frame.
           minAzimuthAngle={-Math.PI / 4.5}
           maxAzimuthAngle={Math.PI / 4.5}
         />
