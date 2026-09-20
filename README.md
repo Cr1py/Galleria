@@ -1,6 +1,6 @@
 # Galleria
 
-Inspired by the pokebiner, minecraft portals, and this project: https://pmndrs.github.io/examples/enter-portals/. The goal is to create a webpage where the user can turn left or right and see different art portals as they move.
+Inspired by this project: https://pmndrs.github.io/examples/enter-portals/ and the feeling of getting lost in an art museum. The goal is to create a webpage where the user can turn left or right and see different art portals as they move.
 
 ## What Does it Do?? (Currently)
  
@@ -10,7 +10,6 @@ Inspired by the pokebiner, minecraft portals, and this project: https://pmndrs.g
 
 ## Current To Do:
 
-- create the gallery scene
 - set up the gallery carosel
 - set up Postgres
 - set up FastAPI
@@ -45,6 +44,9 @@ Inspired by the pokebiner, minecraft portals, and this project: https://pmndrs.g
 ```
 Galleria/
 ├── frontend/
+│   ├── public/
+│   │   └── models/
+│   │       └── ornate-gold-vintage-frame  # Frame asset
 │   └── src/
 │       ├── App.tsx                        # Handles navbar routing for now
 │       ├── lib/
@@ -59,8 +61,8 @@ Galleria/
 │           │   └── Gallery.tsx            # If the user is a guest, brings them to the gallery that displays the art portals
 │           ├── carousel/
 │           │   └── Carousel.tsx           # Puts each user's portal into a carousel
-│           ├── portal/
-│           │   ├── Frame.tsx             # Renders the portal frame and calls the sphere
+│           ├── frame/
+│           │   ├── Picture.tsx             # Renders the portal frame and calls the sphere
 │           │   └── Sphere.tsx             # Inverted sphere with art overlay (gives the fun perspective)
 │           ├── artist/
 │           │   ├── Upload.tsx             # Upload their art, description, socials, etc
