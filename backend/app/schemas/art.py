@@ -1,5 +1,6 @@
 from pydantic import BaseModel
 from uuid import UUID
+from app.schemas.artist import ArtistPublic
 
 
 class ArtistPublic(BaseModel):
@@ -8,6 +9,12 @@ class ArtistPublic(BaseModel):
 
     class Config:
         from_attributes = True
+
+
+class ArtUpdate(BaseModel):
+    title: str | None = None
+    image_url: str | None = None
+    description: str | None = None
 
 
 class ArtBase(BaseModel):
