@@ -12,7 +12,6 @@ Inspired by this project: https://pmndrs.github.io/examples/enter-portals/ and t
 
 - set up the gallery carosel
 - set up Postgres
-- set up FastAPI
 - connect the above together
 - create the admin portal
 - A LOT OF TESTING ;cries;
