@@ -11,7 +11,10 @@ app = FastAPI(title="Galleria API")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],
+    allow_origins=[
+        "http://localhost:5173",
+        "https://galleria.cr1py.workers.dev/",
+    ],
     allow_credentials=True,
     allow_headers=["*"],
     allow_methods=["*"],
