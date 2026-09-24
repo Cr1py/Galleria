@@ -10,6 +10,9 @@ from app.schemas.art import ArtistOut
 router = APIRouter(prefix="/artists", tags=["artists"])
 
 
+# add a post for signup here
+
+
 @router.get("/{artist_id}", response_model=ArtistOut)
 def get_artist(artist_id: UUID, db: Session = Depends(get_db)):
     artist = db.query(Artist).filter(Artist.id == artist_id).first()
