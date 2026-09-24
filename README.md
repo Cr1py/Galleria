@@ -4,7 +4,7 @@ Inspired by this project: https://pmndrs.github.io/examples/enter-portals/ and t
 
 ## What Does it Do?? (Currently)
  
-1. Load in by following the preview link
+1. Load in by following the preview link (I'm using Render as my backend hosting and it may have a 30-40 second boot up time becuase I'm using the free version, so sorry if it takes a bit to load in)
 2. Use your scroll wheel to get real close to the stock image painting
 3. Use your left mouse button to look around the painting and notice how the perspective changes
 
@@ -12,6 +12,7 @@ Inspired by this project: https://pmndrs.github.io/examples/enter-portals/ and t
 
 <p align="center">
   <img src="frontend/public/demo.gif" width="600" />
+  <img src="frontend/public/demo2.gif" width="600" />
 </p>
 
 ## Current To Do:
