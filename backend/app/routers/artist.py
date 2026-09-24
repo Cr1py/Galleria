@@ -1,16 +1,32 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session, joinedload
+from sqlalchemy.exc import IntegrityError
 from uuid import UUID
 from app.database import get_db
 from app.models.art import Art
 from app.models.artist import Artist
 from app.schemas.art import ArtOut, ArtUpdate
-from app.schemas.art import ArtistOut
+from app.schemas.artist import ArtistOut, ArtistCreate
+from app.security import hash_password
 
 router = APIRouter(prefix="/artists", tags=["artists"])
 
 
 # add a post for signup here
+@router.post("/", response_model=ArtistOut)
+def create_artist(artist: ArtistCreate, db: Session = Depends(get_db)):
+    artist_data = artist.model_dump()
+    artist_data["password"] = hash_password(artist_data["password"])
+
+    db_artist = Artist(**artist_data)
+    db.add(db_artist)
+    try:
+        db.commit()
+    except IntegrityError:
+        db.rollback()
+        raise HTTPException(status_code=400, detail="Email or handle already in use")
+    db.refresh(db_artist)
+    return db_artist
 
 
 @router.get("/{artist_id}", response_model=ArtistOut)
