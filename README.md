@@ -46,7 +46,11 @@ Inspired by this project: https://pmndrs.github.io/examples/enter-portals/ and t
 | `Render` | Backend Hosting |
 | `Neon` | Storage |
 
-Note: Eventually, I want to move from Render to a hosting site that offers more once I scale up in operations (maybe aws lambda or smth)
+### Note: 
+Eventually, I want to move from Render to a hosting site that offers more once I scale up in operations (maybe aws lambda or smth)
+Render takes like 40 seconds to load on the free trial
+(only happens if the server is booted up for the first time, which will happen any time a new user views it, because the website is only accessed when either myself or the current artists boot it up)
+Kinda annoying, but it'll only be like this for now while it's in development
 But for now, I want it's easier to set up and because I don't expect much traffic for now
 
 ## Project structure
