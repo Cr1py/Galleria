@@ -43,7 +43,8 @@ Inspired by this project: https://pmndrs.github.io/examples/enter-portals/ and t
 | `Pydantic` | Request/response validation and typed schemas for the API |
 | `python-jose` + `passlib` | JWT auth and password hashing for artist/admin accounts |
 | `Cloudflare` | Frontend Hosting |
-| `Neon` | Backend Hosting |
+| `AWS Lambda` | Backend Hosting |
+| `Neon` | Storage |
 
 ## Project structure
  
