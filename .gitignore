@@ -31,8 +31,6 @@ frontend/*.local
 frontend/.env
 
 # backend (Python/FastAPI)
-backend/pyproject.toml
-backend/uv.lock
 backend/.env
 backend/.venv
 backend/__pycache__/
