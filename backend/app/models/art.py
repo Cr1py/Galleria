@@ -20,7 +20,7 @@ class Art(Base):
     __tablename__ = "art"
 
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
-    artistId = Column(UUID(as_uuid=True), ForeignKey("artists.id", ondelete="CASCADE"))
+    artist_id = Column(UUID(as_uuid=True), ForeignKey("artist.id", ondelete="CASCADE"))
     title = Column(String, nullable=False)
     image_url = Column(String, nullable=False)
     description = Column(String, nullable=True)

@@ -8,12 +8,19 @@ Inspired by this project: https://pmndrs.github.io/examples/enter-portals/ and t
 2. Use your scroll wheel to get real close to the stock image painting
 3. Use your left mouse button to look around the painting and notice how the perspective changes
 
+## Current Demo Images
+
+<p align="center">
+  <img src="frontend/public/demo.gif" width="600" />
+</p>
+
 ## Current To Do:
 
-- set up the gallery carosel
-- set up Postgres
-- connect the above together
 - create the admin portal
+- fix current bugs:
+- images that are too wide/ large don't wrap nicely, so set standard sizing for images (either set for it to manually adjust or make standard sizing for artists to comply with when they post)
+- if three.js can't render the mesh model for the art, the page crashes and will need a reload (only happens with links that it can't open, so might not be a concern if artists are uplaoding to a connected bucket)
+- set character limits (will need to see what looks good on the frontend once I get to adding descriptions/ art details to the wall)
 - A LOT OF TESTING ;cries;
 
 ## Tech stack & key dependencies
@@ -36,7 +43,7 @@ Inspired by this project: https://pmndrs.github.io/examples/enter-portals/ and t
 | `Pydantic` | Request/response validation and typed schemas for the API |
 | `python-jose` + `passlib` | JWT auth and password hashing for artist/admin accounts |
 | `Cloudflare` | Frontend Hosting |
-| `TBD` | Backend Hosting |
+| `Neon` | Backend Hosting |
 
 ## Project structure
  
@@ -58,8 +65,6 @@ Galleria/
 │           ├── webpage/
 │           │   ├── Landing.tsx            # Asks if user is a guest or an artist
 │           │   └── Gallery.tsx            # If the user is a guest, brings them to the gallery that displays the art portals
-│           ├── carousel/
-│           │   └── Carousel.tsx           # Puts each user's portal into a carousel
 │           ├── frame/
 │           │   ├── Picture.tsx             # Renders the portal frame and calls the sphere
 │           │   └── Sphere.tsx             # Inverted sphere with art overlay (gives the fun perspective)
@@ -72,19 +77,20 @@ Galleria/
 │               └── Login.tsx              # Artist/admin sign-in
 │
 └── backend/
+    ├── main.py                            # App entrypoint, CORS, router registration
     └── app/
-        ├── main.py                        # App entrypoint, CORS, router registration
+        ├── security.py                    # Password hashing for security
         ├── config.py                      # Loads .env into a typed settings object
         ├── database.py                    # SQLAlchemy engine + session setup
         ├── models/
         │   ├── art.py                     # ORM model for art pieces
-        │   └── user.py                    # ORM model for users/artists
+        │   └── artist.py                  # ORM model for artists
         ├── schemas/
         │   ├── art.py                     # Pydantic request/response shapes for art
-        │   └── user.py                    # Pydantic request/response shapes for users
+        │   └── artist.py                  # Pydantic request/response shapes for artist
         └── routers/
             ├── art.py                     # /art endpoints
-            └── users.py                   # /users, /auth endpoints
+            └── artist.py                  # /artist, /auth endpoints
 ```
 
 ### Credits

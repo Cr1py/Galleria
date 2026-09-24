@@ -16,7 +16,7 @@ export type Artist = {
 """
 
 
-class Artists(Base):
+class Artist(Base):
     __tablename__ = "artist"
 
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)

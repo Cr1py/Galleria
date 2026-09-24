@@ -1,9 +1,11 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import * as THREE from "three";
-import Picture from "../Frame/Picture";
+import Picture from "../frame/Picture";
 import Backdrop from "./Backdrop";
+import type { Art } from "../../types/types";
+import { fetchInitialArt, fetchNextArt } from "../../lib/api";
 
 function Spotlight() {
   const lightRef = useRef<THREE.SpotLight>(null!);
@@ -33,6 +35,49 @@ function Spotlight() {
 function Gallery() {
   const frameZ = -7.45;
 
+  const [current, setCurrent] = useState<Art | null>(null);
+  const [history, setHistory] = useState<Art[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  // fetch the very first random piece once
+  useEffect(() => {
+    fetchInitialArt()
+      .then(setCurrent)
+      .catch((err) => setError(err.message))
+      .finally(() => setLoading(false));
+  }, []);
+
+  const handleNext = async () => {
+    if (!current || loading) return;
+    setLoading(true);
+    try {
+      const next = await fetchNextArt(current.id);
+      // push last picture onto history, so prev can return to it later without another network call.
+      setHistory((prev) => [...prev, current]);
+      setCurrent(next);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Failed to load next art");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handlePrev = () => {
+    if (history.length === 0) return;
+    const previous = history[history.length - 1];
+    setHistory((prev) => prev.slice(0, -1));
+    setCurrent(previous);
+  };
+
+  if (error) {
+    return <div className="flex h-full w-full items-center justify-center text-red-500">{error}</div>;
+  }
+
+  if (!current) {
+    return <div className="flex h-full w-full items-center justify-center">Loading...</div>;
+  }
+
   return (
     <div className="relative h-full w-full">
       <Canvas
@@ -61,7 +106,7 @@ function Gallery() {
               sits flush against the wall rather than floating in
               front of it or clipping through it
         */}
-        <Picture position={[0, 5, -7]} />
+        <Picture position={[0, 5, -7]} art={current} />
 
         <Spotlight />
 
@@ -88,6 +133,24 @@ function Gallery() {
           maxAzimuthAngle={Math.PI / 4.5}
         />
       </Canvas>
+
+      <button
+        onClick={handlePrev}
+        disabled={history.length === 0 || loading}
+        className="absolute left-4 top-1/2 -translate-y-1/2 rounded-full bg-black/50 px-4 py-3 text-2xl text-white disabled:opacity-30"
+        aria-label="Previous room"
+      >
+        Prev
+      </button>
+      <button
+        onClick={handleNext}
+        disabled={loading}
+        className="absolute right-4 top-1/2 -translate-y-1/2 rounded-full bg-black/50 px-4 py-3 text-2xl text-white disabled:opacity-30"
+        aria-label="Next room"
+      >
+        Next
+      </button>
+
     </div>
   );
 }
