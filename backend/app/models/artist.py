@@ -17,7 +17,7 @@ export type Artist = {
 
 
 class Artists(Base):
-    __tablename__ = "artists"
+    __tablename__ = "artist"
 
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
     email = Column(String, unique=True, nullable=False)
